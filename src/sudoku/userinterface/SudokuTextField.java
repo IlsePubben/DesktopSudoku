@@ -16,9 +16,10 @@ public class SudokuTextField extends TextField
     @Override
     public void replaceText(int start, int end, String text)
     {
+        String oldText = getText();
         if (!text.matches("[0-9]"))
         {
-            super.replaceText(start, end, text);
+            super.replaceText(start, 1, oldText);
         }
     }
 

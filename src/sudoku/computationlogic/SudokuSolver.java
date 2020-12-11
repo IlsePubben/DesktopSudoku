@@ -11,39 +11,7 @@ public class SudokuSolver
     public static boolean puzzleIsSolvable(int[][] puzzle)
     {
         int [][] puzzleToSolve = SudokuUtilities.copyToNewArray(puzzle);
-        return solveSudoku(puzzleToSolve); 
-
-//        Coordinates[] emptyCells = getEmptyCells(puzzle);
-//
-//        int index = 0;
-//        int input = 1;
-//
-//        while (index < 10)
-//        {
-//            Coordinates current = emptyCells[index];
-//            input = 1;
-//
-//            while (input < NUMBER_OF_EMPTY_CELLS)
-//            {
-//                puzzle[current.getX()][current.getY()] = input;
-//
-//                if (GameLogic.sudokuIsValid(puzzle))
-//                {
-//                    if (index == 0 && input == GRID_DIMENSION)
-//                        return false;
-//                    else if (input == GRID_DIMENSION)
-//                        index--;
-//                    ++input;
-//                }
-//                else
-//                {
-//                    ++index;
-//
-//                    if (index == NUMBER_OF_EMPTY_CELLS - 1) return true;
-//                }
-//            }
-//        }
-//        return true;
+        return solveSudoku(puzzleToSolve);
     }
 
     public static boolean solveSudoku(int[][] puzzle) //Backtracking algorithm

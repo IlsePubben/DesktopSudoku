@@ -19,6 +19,8 @@ import sudoku.constants.GameState;
 import sudoku.problemdomain.Coordinates;
 import sudoku.problemdomain.SudokuGame;
 
+import static sudoku.computationlogic.GameGenerator.EMPTY_CELL;
+
 
 import java.util.HashMap;
 
@@ -161,11 +163,12 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
             }
             else if (event.getCode() == KeyCode.BACK_SPACE)
             {
-                handleInput(0, event.getSource());
+                handleInput(EMPTY_CELL, event.getSource());
             }
             else
             {
-                ((TextField) event.getSource()).setText("");
+                String oldText = ((SudokuTextField) event.getSource()).getText();
+                ((TextField) event.getSource()).setText(oldText);
             }
         }
     }
