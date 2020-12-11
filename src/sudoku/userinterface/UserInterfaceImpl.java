@@ -1,10 +1,12 @@
 package sudoku.userinterface;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -51,7 +53,52 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
         drawSudokuBoard(root);
         drawTextFields(root);
         drawGridLines(root);
+        drawButtonNewGame(root);
+        drawButtonCheckPuzzle(root);
         stage.show();
+    }
+
+    private void drawButtonCheckPuzzle(Group root)
+    {
+        Button buttonCheckPuzzle = new Button("Check");
+
+        buttonCheckPuzzle.setTranslateX(StyleUI.BUTTON_WIDTH + StyleUI.BOARD_PADDING + 5);
+        buttonCheckPuzzle.setTranslateY(0);
+
+        buttonCheckPuzzle.setPrefSize(StyleUI.BUTTON_WIDTH, StyleUI.BUTTON_HEIGHT);
+
+        buttonCheckPuzzle.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent actionEvent)
+            {
+                listener.onButtonCheckClick();
+            }
+        });
+
+        root.getChildren().add(buttonCheckPuzzle);
+    }
+
+    private void drawButtonNewGame(Group root)
+    {
+        Button buttonNewGame = new Button("New Game");
+
+        //Location of the button
+        buttonNewGame.setTranslateX(StyleUI.BOARD_PADDING);
+        buttonNewGame.setTranslateY(0);
+
+        buttonNewGame.setPrefSize(StyleUI.BUTTON_WIDTH, StyleUI.BUTTON_HEIGHT);
+
+        buttonNewGame.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent actionEvent)
+            {
+                listener.onButtonNewGameClick();
+            }
+        });
+
+        root.getChildren().add(buttonNewGame);
     }
 
     private void drawGridLines(Group root)
@@ -233,7 +280,7 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
         Alert dialog = new Alert(Alert.AlertType.CONFIRMATION, message, ButtonType.OK);
         dialog.showAndWait();
 
-        if (dialog.getResult() == ButtonType.OK) listener.onDialogClick();
+//        if (dialog.getResult() == ButtonType.OK) listener.onDialogClick();
     }
 
     @Override
